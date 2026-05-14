@@ -11,6 +11,18 @@ Route::middleware("guest")->group(function () {
 
 // Rutas para usuarios autenticados
 Route::middleware("auth")->group(function () {
-    Route::get('/home', [AuthController::class, 'home'])->name('home');
+
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    // Dashboard Veterinario
+    Route::middleware('role:veterinario')->group(function () {
+        Route::get('/home', [AuthController::class, 'home'])->name('home');
+    });
+
+    // Dashboard Administrador
+    Route::middleware('role:administrador')->prefix('admin')->group(function () {
+        Route::get('/home', [AuthController::class, 'adminHome'])->name('admin.home');
+    });
+
 });
+

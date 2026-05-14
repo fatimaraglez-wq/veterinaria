@@ -14,7 +14,7 @@ class AuthController extends Controller
         return view("modules/auth/login");
     }
 
-    // Procesa las credenciales del formulario
+    // Procesa las credenciales y despacha según el rol del usuario
     public function logear(Request $request)
     {
         $credenciales = [
@@ -23,10 +23,19 @@ class AuthController extends Controller
         ];
 
         if (Auth::attempt($credenciales)) {
+            $request->session()->regenerate();
+
+            // Despacho por rol
+            if (Auth::user()->rol === 'administrador') {
+                return to_route('admin.home');
+            }
+
             return to_route('home');
-        } else {
-            return to_route('login');
         }
+
+        return to_route('login')->withErrors([
+            'email' => 'Las credenciales no coinciden con nuestros registros.',
+        ]);
     }
 
     // Cierra la sesión del usuario
@@ -37,9 +46,15 @@ class AuthController extends Controller
         return to_route('login');
     }
 
-    // Vista post-login (home/dashboard)
+    // Dashboard — Veterinario
     public function home()
     {
         return view('modules/dashboard/home');
+    }
+
+    // Dashboard — Administrador
+    public function adminHome()
+    {
+        return view('modules/admin/home');
     }
 }
