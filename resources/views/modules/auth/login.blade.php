@@ -15,7 +15,12 @@
 
                     {{-- Nested Row within Card Body --}}
                     <div class="row">
-                        <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                        <div class="col-lg-6 d-none d-lg-flex align-items-center justify-content-center bg-white">
+                            <img src="/img/images.jpeg"
+                                 alt="Sistema Veterinaria"
+                                 class="img-fluid"
+                                 style="max-height: 380px; object-fit: contain; padding: 2rem;">
+                        </div>
                         <div class="col-lg-6">
                             <div class="p-5">
 
