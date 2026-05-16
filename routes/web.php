@@ -24,6 +24,12 @@ Route::middleware("auth")->group(function () {
     Route::middleware('role:administrador')->prefix('admin')->group(function () {
         Route::get('/home', [AuthController::class, 'adminHome'])->name('admin.home');
         Route::get('/usuarios', [UserController::class, 'index'])->name('admin.users.index');
+        Route::get('/usuarios/crear', [UserController::class, 'create'])->name('admin.users.create');
+        Route::post('/usuarios', [UserController::class, 'store'])->name('admin.users.store');
+        Route::get('/usuarios/{user}', [UserController::class, 'show'])->name('admin.users.show');
+        Route::get('/usuarios/{user}/editar', [UserController::class, 'edit'])->name('admin.users.edit');
+        Route::put('/usuarios/{user}', [UserController::class, 'update'])->name('admin.users.update');
+        Route::delete('/usuarios/{user}', [UserController::class, 'destroy'])->name('admin.users.destroy');
     });
 
 });

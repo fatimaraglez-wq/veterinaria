@@ -22,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'rol',
     ];
 
     /**
@@ -50,5 +51,18 @@ class User extends Authenticatable
     public function veterinario()
     {
         return $this->hasOne(Veterinario::class, 'usuario_id');
+    }
+
+    /**
+     * Verifica si el usuario tiene datos vinculados que impidan su eliminación
+     */
+    public function hasRestrictedDependencies(): bool
+    {
+        // Aquí puedes agregar futuras relaciones. Ejemplo:
+        // return $this->citas()->exists() || $this->mascotas()->exists();
+        
+        // La tabla veterinarios se elimina en cascada automáticamente en BD,
+        // por lo que actualmente no hay dependencias restrictivas.
+        return false;
     }
 }

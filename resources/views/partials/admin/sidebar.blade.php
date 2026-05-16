@@ -38,12 +38,19 @@
         Gestión
     </div>
 
-    {{-- Nav Item - Usuarios --}}
+    {{-- Nav Item - Usuarios Collapse Menu --}}
     <li class="nav-item {{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('admin.users.index') }}">
+        <a class="nav-link {{ request()->routeIs('admin.users.*') ? '' : 'collapsed' }}" href="#" data-toggle="collapse" data-target="#collapseUsuarios"
+            aria-expanded="{{ request()->routeIs('admin.users.*') ? 'true' : 'false' }}" aria-controls="collapseUsuarios">
             <i class="fas fa-fw fa-users"></i>
             <span>Usuarios</span>
         </a>
+        <div id="collapseUsuarios" class="collapse {{ request()->routeIs('admin.users.*') ? 'show' : '' }}" aria-labelledby="headingUsuarios" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Gestión de Usuarios:</h6>
+                <a class="collapse-item {{ request()->routeIs('admin.users.index') ? 'active' : '' }}" href="{{ route('admin.users.index') }}">Listar usuarios</a>
+            </div>
+        </div>
     </li>
 
     {{-- Nav Item - Reportes --}}
