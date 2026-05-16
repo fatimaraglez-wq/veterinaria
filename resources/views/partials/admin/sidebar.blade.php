@@ -39,8 +39,8 @@
     </div>
 
     {{-- Nav Item - Usuarios --}}
-    <li class="nav-item">
-        <a class="nav-link" href="#">
+    <li class="nav-item {{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admin.users.index') }}">
             <i class="fas fa-fw fa-users"></i>
             <span>Usuarios</span>
         </a>

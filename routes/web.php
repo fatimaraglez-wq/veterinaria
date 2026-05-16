@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 // Rutas para usuarios NO autenticados (guest)
@@ -22,6 +23,7 @@ Route::middleware("auth")->group(function () {
     // Dashboard Administrador
     Route::middleware('role:administrador')->prefix('admin')->group(function () {
         Route::get('/home', [AuthController::class, 'adminHome'])->name('admin.home');
+        Route::get('/usuarios', [UserController::class, 'index'])->name('admin.users.index');
     });
 
 });
