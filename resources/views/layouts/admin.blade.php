@@ -28,7 +28,9 @@
     <div id="wrapper">
 
         {{-- Sidebar Admin --}}
-        @include('partials.admin.sidebar')
+        @if(!View::hasSection('hide_sidebar'))
+            @include('partials.admin.sidebar')
+        @endif
         {{-- End of Sidebar --}}
 
         {{-- Content Wrapper --}}

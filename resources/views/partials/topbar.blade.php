@@ -6,6 +6,18 @@
         <i class="fa fa-bars"></i>
     </button>
 
+    {{-- Topbar Left Navbar --}}
+    <ul class="navbar-nav mr-auto">
+        {{-- Nav Item - Expedientes --}}
+        <li class="nav-item {{ request()->routeIs('expedientes.index') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('expedientes.index') }}">
+                <span class="btn btn-primary">
+                    <i class="fas fa-folder-open mr-1"></i> Expedientes
+                </span>
+            </a>
+        </li>
+    </ul>
+
     {{-- Topbar Navbar --}}
     <ul class="navbar-nav ml-auto">
 
