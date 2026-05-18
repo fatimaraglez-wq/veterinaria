@@ -16,6 +16,7 @@ Route::middleware("auth")->group(function () {
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::view('/expedientes', 'modules.expedientes.index')->name('expedientes.index');
+    Route::get('/api/expedientes/search', [\App\Http\Controllers\ExpedienteController::class, 'search'])->name('expedientes.search');
 
     // Dashboard Veterinario
     Route::middleware('role:veterinario')->group(function () {

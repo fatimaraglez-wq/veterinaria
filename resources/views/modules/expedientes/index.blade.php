@@ -5,6 +5,29 @@
 {{-- Ocultar el sidebar en esta vista --}}
 @section('hide_sidebar', true)
 
+@push('styles')
+<style>
+    /* Estilos para los resultados de la búsqueda */
+    .search-results-container {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        display: none;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+    .search-result-item {
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+    .search-result-item:hover {
+        background-color: #f8f9fa;
+    }
+</style>
+@endpush
+
 @section('contenido')
 
     {{-- Page Heading --}}
@@ -28,16 +51,19 @@
                 <div class="card-body p-5">
                     
                     {{-- Buscador --}}
-                    <div class="form-group mb-5 text-center">
+                    <div class="form-group mb-5 text-center position-relative">
                         <label for="buscadorExpedientes" class="text-gray-600 mb-3" style="font-size: 1.1rem;">Ingrese el nombre, propietario o número de expediente de la mascota:</label>
                         <div class="input-group input-group-lg shadow-sm">
-                            <input type="text" class="form-control bg-light border-0" id="buscadorExpedientes" placeholder="Ej. Firulais, Juan Pérez, EXP-001..." aria-label="Search">
+                            <input type="text" autocomplete="off" class="form-control bg-light border-0" id="buscadorExpedientes" placeholder="Ej. Firulais, Juan Pérez, EXP-001..." aria-label="Search">
                             <div class="input-group-append">
-                                <button class="btn btn-primary px-4" type="button">
+                                <button class="btn btn-primary px-4" type="button" id="btnBuscar">
                                     <i class="fas fa-search"></i>
                                 </button>
                             </div>
                         </div>
+                        
+                        {{-- Contenedor de Resultados --}}
+                        <div id="search-results" class="list-group shadow search-results-container text-left mt-1 rounded"></div>
                     </div>
 
                     <hr class="mb-4">
@@ -66,3 +92,97 @@
     </div>
 
 @endsection
+
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const inputBuscador = document.getElementById('buscadorExpedientes');
+        const resultadosContainer = document.getElementById('search-results');
+        let debounceTimer;
+
+        // Función para realizar la búsqueda
+        const realizarBusqueda = async (query) => {
+            if (query.length < 2) {
+                resultadosContainer.style.display = 'none';
+                resultadosContainer.innerHTML = '';
+                return;
+            }
+
+            try {
+                // Hacer la petición GET a la API
+                const response = await fetch(`{{ route('expedientes.search') }}?q=${encodeURIComponent(query)}`);
+                const mascotas = await response.json();
+
+                resultadosContainer.innerHTML = '';
+
+                if (mascotas.length === 0) {
+                    resultadosContainer.innerHTML = `
+                        <div class="list-group-item text-muted">No se encontraron resultados para "${query}"</div>
+                    `;
+                    resultadosContainer.style.display = 'block';
+                    return;
+                }
+
+                // Renderizar los resultados
+                mascotas.forEach(mascota => {
+                    const nombreDueno = mascota.dueno ? mascota.dueno.nombre_completo : 'Sin dueño asignado';
+                    
+                    const a = document.createElement('a');
+                    a.href = '#'; // Cambiar esto por la ruta real al expediente cuando exista
+                    a.className = 'list-group-item list-group-item-action search-result-item flex-column align-items-start';
+                    
+                    a.innerHTML = `
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1 text-primary font-weight-bold">
+                                <i class="fas fa-paw mr-1"></i> ${mascota.nombre} 
+                                <span class="badge badge-secondary ml-2">EXP-${mascota.id.toString().padStart(3, '0')}</span>
+                            </h5>
+                            <small class="text-muted">${mascota.especie}</small>
+                        </div>
+                        <p class="mb-1 text-gray-800"><i class="fas fa-user mr-1 text-gray-400"></i> Dueño: ${nombreDueno}</p>
+                    `;
+                    
+                    // Al hacer click, que rellene el input (opcional) o navegue
+                    a.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        inputBuscador.value = mascota.nombre;
+                        resultadosContainer.style.display = 'none';
+                        // window.location.href = `/expedientes/${mascota.id}`; // Redirigir si se requiere
+                    });
+
+                    resultadosContainer.appendChild(a);
+                });
+
+                resultadosContainer.style.display = 'block';
+
+            } catch (error) {
+                console.error("Error al buscar: ", error);
+            }
+        };
+
+        // Evento 'input' con debounce
+        inputBuscador.addEventListener('input', function (e) {
+            const query = e.target.value.trim();
+            
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => {
+                realizarBusqueda(query);
+            }, 300); // 300ms delay
+        });
+
+        // Ocultar resultados si se hace click fuera
+        document.addEventListener('click', function(e) {
+            if (!inputBuscador.contains(e.target) && !resultadosContainer.contains(e.target)) {
+                resultadosContainer.style.display = 'none';
+            }
+        });
+        
+        // Mostrar de nuevo si se hace click en el input
+        inputBuscador.addEventListener('focus', function() {
+            if (this.value.trim().length >= 2 && resultadosContainer.innerHTML.trim() !== '') {
+                resultadosContainer.style.display = 'block';
+            }
+        });
+    });
+</script>
+@endpush
