@@ -18,24 +18,47 @@
     </div>
 
     {{-- Content Row --}}
-    <div class="row">
+    <div class="row justify-content-center mt-5">
 
-        <div class="col-xl-12 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Gestión de Expedientes
+        <div class="col-xl-8 col-lg-10 mb-4">
+            <div class="card shadow-lg mb-4 border-0 rounded-lg">
+                <div class="card-header py-4 bg-primary text-center">
+                    <h5 class="m-0 font-weight-bold text-white"><i class="fas fa-search mr-2"></i>Búsqueda de Expedientes</h5>
+                </div>
+                <div class="card-body p-5">
+                    
+                    {{-- Buscador --}}
+                    <div class="form-group mb-5 text-center">
+                        <label for="buscadorExpedientes" class="text-gray-600 mb-3" style="font-size: 1.1rem;">Ingrese el nombre, propietario o número de expediente de la mascota:</label>
+                        <div class="input-group input-group-lg shadow-sm">
+                            <input type="text" class="form-control bg-light border-0" id="buscadorExpedientes" placeholder="Ej. Firulais, Juan Pérez, EXP-001..." aria-label="Search">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary px-4" type="button">
+                                    <i class="fas fa-search"></i>
+                                </button>
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                Próximamente se implementará el módulo de expedientes aquí.
-                            </div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-file-medical fa-2x text-gray-300"></i>
                         </div>
                     </div>
+
+                    <hr class="mb-4">
+
+                    {{-- Botones de Acción --}}
+                    <div class="d-flex justify-content-center flex-wrap mt-4">
+                        <button class="btn btn-info btn-icon-split btn-lg mx-2 mb-3 shadow-sm">
+                            <span class="icon text-white-50">
+                                <i class="fas fa-stethoscope"></i>
+                            </span>
+                            <span class="text">Ver Consultas</span>
+                        </button>
+
+                        <button class="btn btn-success btn-icon-split btn-lg mx-2 mb-3 shadow-sm">
+                            <span class="icon text-white-50">
+                                <i class="fas fa-plus"></i>
+                            </span>
+                            <span class="text">Nuevo Paciente</span>
+                        </button>
+                    </div>
+
                 </div>
             </div>
         </div>
