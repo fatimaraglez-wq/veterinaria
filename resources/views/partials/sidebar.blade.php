@@ -12,21 +12,65 @@
     {{-- Divider --}}
     <hr class="sidebar-divider my-0">
 
-    {{-- Nav Item - Dashboard --}}
-    <li class="nav-item {{ request()->routeIs('home') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('home') }}">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span>
+    {{-- Heading: Consulta --}}
+    <div class="sidebar-heading mt-3">
+        Consulta
+    </div>
+
+    <li class="nav-item">
+        <a class="nav-link pb-1" href="#">
+            <i class="fas fa-fw fa-stethoscope"></i>
+            <span>Diagnóstico</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link pt-1" href="#">
+            <i class="fas fa-fw fa-pills"></i>
+            <span>Tratamiento</span>
         </a>
     </li>
 
     {{-- Divider --}}
-    <hr class="sidebar-divider">
+    <hr class="sidebar-divider mt-3 mb-2">
 
-    {{-- Heading --}}
+    {{-- Heading: Antecedentes --}}
     <div class="sidebar-heading">
-        Sistema
+        Antecedentes
     </div>
+
+    <li class="nav-item">
+        <a class="nav-link pb-1" href="#">
+            <i class="fas fa-fw fa-allergies"></i>
+            <span>Alergias</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link py-1" href="#">
+            <i class="fas fa-fw fa-band-aid"></i>
+            <span>Lesiones</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link pt-1" href="#">
+            <i class="fas fa-fw fa-disease"></i>
+            <span>Patológicos</span>
+        </a>
+    </li>
+
+    {{-- Divider --}}
+    <hr class="sidebar-divider mt-3 mb-2">
+
+    {{-- Heading: Nutrición --}}
+    <div class="sidebar-heading">
+        Nutrición
+    </div>
+
+    <li class="nav-item">
+        <a class="nav-link pb-3" href="#">
+            <i class="fas fa-fw fa-bone"></i>
+            <span>Historial Alimentación</span>
+        </a>
+    </li>
 
     {{-- Divider --}}
     <hr class="sidebar-divider d-none d-md-block">

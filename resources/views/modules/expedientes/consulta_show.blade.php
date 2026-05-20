@@ -43,28 +43,16 @@
 
                     <hr>
 
-                    <div class="mb-4 mt-4">
-                        <h6 class="font-weight-bold text-gray-800 mb-2">Diagnóstico Médico</h6>
-                        <div class="p-3 bg-light rounded border-left-warning">
-                            <p class="mb-0 text-gray-700">{{ $consulta->diagnostico ?? 'No hay diagnóstico registrado.' }}</p>
-                        </div>
-                    </div>
 
-                    <div class="mb-3">
-                        <h6 class="font-weight-bold text-gray-800 mb-2">Tratamiento Indicado</h6>
-                        <div class="p-3 bg-light rounded border-left-success">
-                            <p class="mb-0 text-gray-700">{!! nl2br(e($consulta->tratamiento ?? 'No hay tratamiento registrado.')) !!}</p>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
 
         {{-- Antecedentes de la Mascota --}}
         <div class="col-xl-4 col-lg-5 mb-4">
-            <div class="card shadow mb-4 border-left-warning h-100">
+            <div class="card shadow mb-4 border-left-success h-100">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-white">
-                    <h6 class="m-0 font-weight-bold text-warning"><i class="fas fa-history mr-2"></i>Antecedentes del Paciente</h6>
+                    <h6 class="m-0 font-weight-bold text-success"><i class="fas fa-history mr-2"></i>Datos del paciente</h6>
                 </div>
                 <div class="card-body">
                     <div class="text-center mb-4">

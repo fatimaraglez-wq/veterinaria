@@ -75,9 +75,6 @@
                                                 <a href="{{ route('expedientes.consultas.show', [$mascota->id, $consulta->id]) }}" class="btn btn-info btn-sm btn-circle" title="Ver Detalles">
                                                     <i class="fas fa-eye"></i>
                                                 </a>
-                                                <button class="btn btn-primary btn-sm btn-circle" title="Editar">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
                                             </td>
                                         </tr>
                                     @endforeach
