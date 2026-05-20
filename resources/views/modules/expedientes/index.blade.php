@@ -55,11 +55,6 @@
                         <label for="buscadorExpedientes" class="text-gray-600 mb-3" style="font-size: 1.1rem;">Ingrese el nombre, propietario o número de expediente de la mascota:</label>
                         <div class="input-group input-group-lg shadow-sm">
                             <input type="text" autocomplete="off" class="form-control bg-light border-0" id="buscadorExpedientes" placeholder="Ej. Firulais, Juan Pérez, EXP-001..." aria-label="Search">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary px-4" type="button" id="btnBuscar">
-                                    <i class="fas fa-search"></i>
-                                </button>
-                            </div>
                         </div>
                         
                         {{-- Contenedor de Resultados --}}
@@ -70,12 +65,12 @@
 
                     {{-- Botones de Acción --}}
                     <div class="d-flex justify-content-center flex-wrap mt-4">
-                        <button class="btn btn-info btn-icon-split btn-lg mx-2 mb-3 shadow-sm">
+                        <a href="#" id="btnVerConsultas" class="btn btn-info btn-icon-split btn-lg mx-2 mb-3 shadow-sm disabled" aria-disabled="true">
                             <span class="icon text-white-50">
                                 <i class="fas fa-stethoscope"></i>
                             </span>
                             <span class="text">Ver Consultas</span>
-                        </button>
+                        </a>
 
                         <button class="btn btn-success btn-icon-split btn-lg mx-2 mb-3 shadow-sm">
                             <span class="icon text-white-50">
@@ -147,7 +142,12 @@
                         e.preventDefault();
                         inputBuscador.value = mascota.nombre;
                         resultadosContainer.style.display = 'none';
-                        // window.location.href = `/expedientes/${mascota.id}`; // Redirigir si se requiere
+                        
+                        // Habilitar y actualizar el botón "Ver Consultas"
+                        const btnVerConsultas = document.getElementById('btnVerConsultas');
+                        btnVerConsultas.href = `/expedientes/${mascota.id}/consultas`;
+                        btnVerConsultas.classList.remove('disabled');
+                        btnVerConsultas.removeAttribute('aria-disabled');
                     });
 
                     resultadosContainer.appendChild(a);
