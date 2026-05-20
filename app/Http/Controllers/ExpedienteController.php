@@ -48,4 +48,36 @@ class ExpedienteController extends Controller
         
         return view('modules.expedientes.consulta_show', compact('mascota', 'consulta'));
     }
+
+    public function diagnostico(Mascota $mascota, Consulta $consulta)
+    {
+        if ($consulta->mascota_id !== $mascota->id) {
+            abort(404);
+        }
+
+        return view('modules.expedientes.diagnostico', compact('mascota', 'consulta'));
+    }
+
+    public function updateDiagnostico(Request $request, Mascota $mascota, Consulta $consulta)
+    {
+        if ($consulta->mascota_id !== $mascota->id) {
+            abort(404);
+        }
+
+        $request->validate([
+            'diagnostico' => 'nullable|string',
+        ]);
+
+        // Verificar si es información nueva o actualización
+        $esNuevo = empty($consulta->diagnostico);
+
+        $consulta->diagnostico = $request->input('diagnostico');
+        $consulta->save();
+
+        // Definir el mensaje según la acción
+        $mensaje = $esNuevo ? 'Se guardó la nueva información.' : 'Se actualizó con éxito.';
+
+        return redirect()->route('expedientes.consultas.diagnostico', [$mascota->id, $consulta->id])
+            ->with('success', $mensaje);
+    }
 }

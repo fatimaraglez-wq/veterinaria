@@ -19,6 +19,8 @@ Route::middleware("auth")->group(function () {
     Route::get('/api/expedientes/search', [\App\Http\Controllers\ExpedienteController::class, 'search'])->name('expedientes.search');
     Route::get('/expedientes/{mascota}/consultas', [\App\Http\Controllers\ExpedienteController::class, 'consultas'])->name('expedientes.consultas');
     Route::get('/expedientes/{mascota}/consultas/{consulta}', [\App\Http\Controllers\ExpedienteController::class, 'showConsulta'])->name('expedientes.consultas.show');
+    Route::get('/expedientes/{mascota}/consultas/{consulta}/diagnostico', [\App\Http\Controllers\ExpedienteController::class, 'diagnostico'])->name('expedientes.consultas.diagnostico');
+    Route::post('/expedientes/{mascota}/consultas/{consulta}/diagnostico', [\App\Http\Controllers\ExpedienteController::class, 'updateDiagnostico'])->name('expedientes.consultas.diagnostico.update');
 
     // Dashboard Veterinario
     Route::middleware('role:veterinario')->group(function () {

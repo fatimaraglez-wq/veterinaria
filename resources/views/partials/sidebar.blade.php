@@ -18,7 +18,7 @@
     </div>
 
     <li class="nav-item">
-        <a class="nav-link pb-1" href="#">
+        <a class="nav-link pb-1" href="{{ (isset($mascota) && isset($consulta)) ? route('expedientes.consultas.diagnostico', [$mascota->id, $consulta->id]) : '#' }}">
             <i class="fas fa-fw fa-stethoscope"></i>
             <span>Diagnóstico</span>
         </a>
