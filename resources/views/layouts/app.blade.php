@@ -18,6 +18,9 @@
 
     {{-- SB Admin 2 CSS --}}
     <link href="/startbootstrap/css/sb-admin-2.min.css" rel="stylesheet">
+    
+    {{-- Custom Pink & Purple Theme --}}
+    <link href="/css/pink-purple-theme.css" rel="stylesheet">
 
     @stack('styles')
 </head>
