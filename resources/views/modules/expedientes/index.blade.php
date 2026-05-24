@@ -72,12 +72,12 @@
                             <span class="text">Ver Consultas</span>
                         </a>
 
-                        <button class="btn btn-success btn-icon-split btn-lg mx-2 mb-3 shadow-sm">
+                        <a href="{{ route('expedientes.create') }}" class="btn btn-success btn-icon-split btn-lg mx-2 mb-3 shadow-sm">
                             <span class="icon text-white-50">
                                 <i class="fas fa-plus"></i>
                             </span>
                             <span class="text">Nuevo Paciente</span>
-                        </button>
+                        </a>
                     </div>
 
                 </div>

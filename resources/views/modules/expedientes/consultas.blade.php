@@ -42,9 +42,9 @@
             <div class="card shadow mb-4 h-100 border-left-info">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-white">
                     <h6 class="m-0 font-weight-bold text-info"><i class="fas fa-stethoscope mr-2"></i>Consultas Registradas</h6>
-                    <button class="btn btn-sm btn-success shadow-sm">
+                    <a href="{{ route('expedientes.consultas.create', $mascota->id) }}" class="btn btn-sm btn-success shadow-sm">
                         <i class="fas fa-plus fa-sm text-white-50 mr-1"></i> Nueva Consulta
-                    </button>
+                    </a>
                 </div>
                 <div class="card-body">
                     @if($mascota->consultas->count() > 0)

@@ -24,7 +24,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link pt-1" href="#">
+        <a class="nav-link pt-1" href="{{ (isset($mascota) && isset($consulta)) ? route('expedientes.consultas.tratamiento', [$mascota->id, $consulta->id]) : '#' }}">
             <i class="fas fa-fw fa-pills"></i>
             <span>Tratamiento</span>
         </a>
@@ -39,19 +39,19 @@
     </div>
 
     <li class="nav-item">
-        <a class="nav-link pb-1" href="#">
+        <a class="nav-link pb-1" href="{{ isset($mascota) ? route('expedientes.mascotas.alergias', $mascota->id) : '#' }}">
             <i class="fas fa-fw fa-allergies"></i>
             <span>Alergias</span>
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link py-1" href="#">
+        <a class="nav-link py-1" href="{{ isset($mascota) ? route('expedientes.mascotas.lesiones', $mascota->id) : '#' }}">
             <i class="fas fa-fw fa-band-aid"></i>
             <span>Lesiones</span>
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link pt-1" href="#">
+        <a class="nav-link pt-1" href="{{ isset($mascota) ? route('expedientes.mascotas.patologicos', $mascota->id) : '#' }}">
             <i class="fas fa-fw fa-disease"></i>
             <span>Patológicos</span>
         </a>
@@ -66,7 +66,7 @@
     </div>
 
     <li class="nav-item">
-        <a class="nav-link pb-3" href="#">
+        <a class="nav-link pb-3" href="{{ isset($mascota) ? route('expedientes.mascotas.nutricion', $mascota->id) : '#' }}">
             <i class="fas fa-fw fa-bone"></i>
             <span>Historial Alimentación</span>
         </a>

@@ -18,6 +18,10 @@ class Mascota extends Model
         'tipo_sangre',
         'comportamiento',
         'es_adoptado',
+        'alergias',
+        'lesiones',
+        'patologicos',
+        'historial_alimentacion',
     ];
 
     protected $casts = [
