@@ -19,29 +19,29 @@ Route::middleware("auth")->group(function () {
     Route::get('/expedientes/crear', [\App\Http\Controllers\ExpedienteController::class, 'create'])->name('expedientes.create');
     Route::post('/expedientes', [\App\Http\Controllers\ExpedienteController::class, 'store'])->name('expedientes.store');
     Route::get('/api/expedientes/search', [\App\Http\Controllers\ExpedienteController::class, 'search'])->name('expedientes.search');
-    Route::get('/expedientes/{mascota}/consultas', [\App\Http\Controllers\ExpedienteController::class, 'consultas'])->name('expedientes.consultas');
-    Route::get('/expedientes/{mascota}/consultas/crear', [\App\Http\Controllers\ExpedienteController::class, 'createConsulta'])->name('expedientes.consultas.create');
-    Route::post('/expedientes/{mascota}/consultas', [\App\Http\Controllers\ExpedienteController::class, 'storeConsulta'])->name('expedientes.consultas.store');
-    Route::get('/expedientes/{mascota}/consultas/{consulta}', [\App\Http\Controllers\ExpedienteController::class, 'showConsulta'])->name('expedientes.consultas.show');
-    Route::get('/expedientes/{mascota}/consultas/{consulta}/diagnostico', [\App\Http\Controllers\ExpedienteController::class, 'diagnostico'])->name('expedientes.consultas.diagnostico');
-    Route::post('/expedientes/{mascota}/consultas/{consulta}/diagnostico', [\App\Http\Controllers\ExpedienteController::class, 'updateDiagnostico'])->name('expedientes.consultas.diagnostico.update');
+    Route::get('/expedientes/{mascota}/consultas', [\App\Http\Controllers\ConsultaController::class, 'consultas'])->name('expedientes.consultas');
+    Route::get('/expedientes/{mascota}/consultas/crear', [\App\Http\Controllers\ConsultaController::class, 'createConsulta'])->name('expedientes.consultas.create');
+    Route::post('/expedientes/{mascota}/consultas', [\App\Http\Controllers\ConsultaController::class, 'storeConsulta'])->name('expedientes.consultas.store');
+    Route::get('/expedientes/{mascota}/consultas/{consulta}', [\App\Http\Controllers\ConsultaController::class, 'showConsulta'])->name('expedientes.consultas.show');
+    Route::get('/expedientes/{mascota}/consultas/{consulta}/diagnostico', [\App\Http\Controllers\ConsultaController::class, 'diagnostico'])->name('expedientes.consultas.diagnostico');
+    Route::post('/expedientes/{mascota}/consultas/{consulta}/diagnostico', [\App\Http\Controllers\ConsultaController::class, 'updateDiagnostico'])->name('expedientes.consultas.diagnostico.update');
     
     // Tratamiento (belonging to consulta)
-    Route::get('/expedientes/{mascota}/consultas/{consulta}/tratamiento', [\App\Http\Controllers\ExpedienteController::class, 'tratamiento'])->name('expedientes.consultas.tratamiento');
-    Route::post('/expedientes/{mascota}/consultas/{consulta}/tratamiento', [\App\Http\Controllers\ExpedienteController::class, 'updateTratamiento'])->name('expedientes.consultas.tratamiento.update');
+    Route::get('/expedientes/{mascota}/consultas/{consulta}/tratamiento', [\App\Http\Controllers\ConsultaController::class, 'tratamiento'])->name('expedientes.consultas.tratamiento');
+    Route::post('/expedientes/{mascota}/consultas/{consulta}/tratamiento', [\App\Http\Controllers\ConsultaController::class, 'updateTratamiento'])->name('expedientes.consultas.tratamiento.update');
 
     // Mascota related history
-    Route::get('/expedientes/{mascota}/alergias', [\App\Http\Controllers\ExpedienteController::class, 'alergias'])->name('expedientes.mascotas.alergias');
-    Route::post('/expedientes/{mascota}/alergias', [\App\Http\Controllers\ExpedienteController::class, 'updateAlergias'])->name('expedientes.mascotas.alergias.update');
+    Route::get('/expedientes/{mascota}/alergias', [\App\Http\Controllers\HistorialMedicoController::class, 'alergias'])->name('expedientes.mascotas.alergias');
+    Route::post('/expedientes/{mascota}/alergias', [\App\Http\Controllers\HistorialMedicoController::class, 'updateAlergias'])->name('expedientes.mascotas.alergias.update');
     
-    Route::get('/expedientes/{mascota}/lesiones', [\App\Http\Controllers\ExpedienteController::class, 'lesiones'])->name('expedientes.mascotas.lesiones');
-    Route::post('/expedientes/{mascota}/lesiones', [\App\Http\Controllers\ExpedienteController::class, 'updateLesiones'])->name('expedientes.mascotas.lesiones.update');
+    Route::get('/expedientes/{mascota}/lesiones', [\App\Http\Controllers\HistorialMedicoController::class, 'lesiones'])->name('expedientes.mascotas.lesiones');
+    Route::post('/expedientes/{mascota}/lesiones', [\App\Http\Controllers\HistorialMedicoController::class, 'updateLesiones'])->name('expedientes.mascotas.lesiones.update');
     
-    Route::get('/expedientes/{mascota}/patologicos', [\App\Http\Controllers\ExpedienteController::class, 'patologicos'])->name('expedientes.mascotas.patologicos');
-    Route::post('/expedientes/{mascota}/patologicos', [\App\Http\Controllers\ExpedienteController::class, 'updatePatologicos'])->name('expedientes.mascotas.patologicos.update');
+    Route::get('/expedientes/{mascota}/patologicos', [\App\Http\Controllers\HistorialMedicoController::class, 'patologicos'])->name('expedientes.mascotas.patologicos');
+    Route::post('/expedientes/{mascota}/patologicos', [\App\Http\Controllers\HistorialMedicoController::class, 'updatePatologicos'])->name('expedientes.mascotas.patologicos.update');
     
-    Route::get('/expedientes/{mascota}/nutricion', [\App\Http\Controllers\ExpedienteController::class, 'nutricion'])->name('expedientes.mascotas.nutricion');
-    Route::post('/expedientes/{mascota}/nutricion', [\App\Http\Controllers\ExpedienteController::class, 'updateNutricion'])->name('expedientes.mascotas.nutricion.update');
+    Route::get('/expedientes/{mascota}/nutricion', [\App\Http\Controllers\HistorialMedicoController::class, 'nutricion'])->name('expedientes.mascotas.nutricion');
+    Route::post('/expedientes/{mascota}/nutricion', [\App\Http\Controllers\HistorialMedicoController::class, 'updateNutricion'])->name('expedientes.mascotas.nutricion.update');
 
     // Dashboard Veterinario
     Route::middleware('role:veterinario')->group(function () {

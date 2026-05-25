@@ -2,6 +2,8 @@
 
 @section('titulo_pagina', 'Nuevo Paciente')
 
+@section('hide_sidebar', true)
+
 @section('contenido')
 
     {{-- Page Heading --}}

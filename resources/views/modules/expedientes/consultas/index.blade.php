@@ -67,7 +67,7 @@
                                                 <strong>{{ $consulta->fecha_consulta ? $consulta->fecha_consulta->format('d/m/Y') : 'N/A' }}</strong><br>
                                                 <small class="text-muted">{{ $consulta->fecha_consulta ? $consulta->fecha_consulta->format('H:i') : '' }}</small>
                                             </td>
-                                            <td class="align-middle">{{ $consulta->veterinario->nombre ?? 'N/A' }}</td>
+                                            <td class="align-middle">{{ $consulta->veterinario->nombre_completo ?? 'N/A' }}</td>
                                             <td class="align-middle">{{ $consulta->peso ?? 'N/A' }}</td>
                                             <td class="align-middle">{{ $consulta->talla ?? 'N/A' }}</td>
                                             <td class="align-middle text-truncate" style="max-width: 150px;" title="{{ $consulta->diagnostico }}">{{ $consulta->diagnostico }}</td>

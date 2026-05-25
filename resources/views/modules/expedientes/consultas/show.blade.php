@@ -29,7 +29,7 @@
                     <div class="row mb-4">
                         <div class="col-md-6 mb-3">
                             <h6 class="font-weight-bold text-gray-800 mb-1">Veterinario Tratante</h6>
-                            <p class="text-muted"><i class="fas fa-user-md mr-2"></i>{{ $consulta->veterinario->nombre ?? 'N/A' }}</p>
+                            <p class="text-muted"><i class="fas fa-user-md mr-2"></i>{{ $consulta->veterinario->nombre_completo ?? 'N/A' }}</p>
                         </div>
                         <div class="col-md-3 mb-3">
                             <h6 class="font-weight-bold text-gray-800 mb-1">Peso</h6>
